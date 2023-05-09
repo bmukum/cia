@@ -1,6 +1,6 @@
 # Continuous Integration Automation (CIA).
-## TASK
-You’re a new engineer that has joined the platform team in a startup company. They are building out their new applications in the cloud as microservices. They want to decouple the CI pipelines. This means that each microservices will have its own independent pipeline. The lead architect has provided you with an architecture diagram as shown below that illustrates how each app’s CI system would be configured.
+## REQUIREMENT
+You’re a new engineer that has joined the platform team in a startup company. They are building out their new applications in the cloud as microservices. They want to decouple the CI pipelines. This means that each microservice will have its own independent pipeline. The lead architect has provided you with an architecture diagram as shown below that illustrates how each app’s CI system would be configured.
 Your task is to follow the provided steps to manually create one of their microservices’ CI pipelines using AWS native tools. After that’s complete, you will create a terraform module that can be used for the other services.
 
 Below is the architecture for the CI pipeline. You will create the resources manually using the following steps, then proceed to use terraform.
@@ -8,7 +8,7 @@ Below is the architecture for the CI pipeline. You will create the resources man
 
 ![image](architecture.png)
 
-
+## STEPS
 Before starting this exercise, make sure you're connected to the AWS account using an IAM user.
 - On the AWS management console, under services, search “CodeCommit”.
 - Find and click on “Create Repository”
@@ -123,7 +123,18 @@ CodePipeline
 - Give the build project name and choose single build.
 - Skip the deploy stage and create pipeline.
 
-##VALIDATION AND TESTING
+## YOUR TASK
+You will create the following resources:
+- AWS CodeCommit repository to store the source code.
+- AWS CodeBuild project to build the image
+- IAM role that AWS CodeBuild needs to make API calls to other AWS services. This is very important.
+- AWS ECR repository to store the images.
+- AWS CodePipeline to orchestrate the entire CI pipeline. This is needed so that on a push/PR, CodeBuild can automatically download the source and build the application.
+- IAM role that CodeBuild needs to use to call other AWS services like CodeBuild, Cloudwatch etc.
+
+## VALIDATION AND TESTING
+- To test out the correctness of your work, do the following:
+- Create a pipeline called ```demo-web-app``` using the module you built in the task above.
 - Install git locally if you don't have it.
 ```
 $ sudo yum install - git
@@ -133,8 +144,9 @@ $ sudo yum install - git
 $ ssh-keygen -t rsa -b 4096
 $ cat ~/.ssh/id_rsa.pub
 ```
+- Login in the management console as an IAM user.
 - On the console, navigate to the IAM service. Under security credentials for the IAM user , select upload SSH public key.
-- Paste what you have in the space provided and upload.
+- Paste the public key in the space provided and upload.
 - After the upload, copy the SSH ID generated.
 - Go back to your local computer.
 - Create the config file that would be used to store credentials to authenticate with AWS Codecommit and give the file read permissions so that contents could be read and supplied to IAM for authentication.
@@ -149,18 +161,25 @@ $ echo "User your-SSH-ID" >> ~/.ssh/config
 $ echo "IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
 ```
 - Navigate to the CodeCommit service. 
-- Select the repo you created and choose Clone URL. Copy the SSH URL shown.
+- Select the repo you created using the module and choose Clone URL. Copy the SSH URL shown.
 - On your computer, run git clone “paste the URL”
 - Run the following commands to get the source code for the application.
 ```
 cd
-git clone https://github.com/bmukum/august-2022-app.git
+git clone https://github.com/bmukum/cia.git
 ```
 - copy the files into your repository.
 ```
-cp -r august-2022-app/aws-cicid/* web-app
+cp -r cia/* demo-web-app
 ```
+- Note: demo-web-app above is considered to be the name of the Codecommit repository. Feel free to replace it with what you used.
 - Commit the changes, push them up and watch the pipeline execute.
-- If it succeeds, you're all done. Bravo! You're done.
+
+## ACCEPTANCE CRITERIA
+- All resources are created as code.
+- The resources were created successfully with no errors.
+- The module can be re-used for other services.
+
+- Feel free to ask questions if you don't understand anything.
 
 
