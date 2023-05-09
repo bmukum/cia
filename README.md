@@ -10,7 +10,7 @@ Below is the architecture for the CI pipeline. You will create the resources man
 
 ## STEPS
 Before starting this exercise, make sure you're connected to the AWS account using an IAM user.
-- On the AWS management console, under services, search “CodeCommit”.
+- In the AWS management console, under services, search “CodeCommit”.
 - Find and click on “Create Repository”
 - Enter  "web-app" as the repository name, a description, and click on “create”.
 - You have now created the codecommit repository.
@@ -93,8 +93,7 @@ CODEBUILD
 - Give the name: code-build-policy. Click create policy.
 - Go back and add the policy to the codebuild role.
 - Click review and name the role code-build-role. Create the role.
-- On the console, navigate to the CodeBuild service.
-- On the management console, search and navigate to the CodeBuild service.
+- In the management console, search and navigate to the CodeBuild service.
 - Choose create build project.
 - Enter “web-app” in the project name.
 - For Source provider, select “AWS CodeCommit”
