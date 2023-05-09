@@ -1,0 +1,27 @@
+body{
+    background-color:#f4f4f4;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: medium;
+    margin: 0;
+}
+.box-1{
+    background-color: #333;
+    color: #fff;
+    border-right: 5px red solid;
+    border-left: 5px red solid;
+    border-top: 5px red solid;
+    border-bottom: 5px red solid;
+    border-width: 1px;
+    border-top-style: solid;
+
+    padding: 15px;
+}
+.box-1 h1{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+
+.container{
+    width: 80%;
+    margin: auto;
+}
