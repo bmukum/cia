@@ -124,13 +124,15 @@ CodePipeline
 - Skip the deploy stage and create pipeline.
 
 ## YOUR TASK
-You will create the following resources:
+You have created the following resources above:
 - AWS CodeCommit repository to store the source code.
 - AWS CodeBuild project to build the image
 - IAM role that AWS CodeBuild needs to make API calls to other AWS services. This is very important.
 - AWS ECR repository to store the images.
 - AWS CodePipeline to orchestrate the entire CI pipeline. This is needed so that on a push/PR, CodeBuild can automatically download the source and build the application.
 - IAM role that CodeBuild needs to use to call other AWS services like CodeBuild, Cloudwatch etc.
+
+- This time, you will create the same thing resources, but as CODE using terraform.
 
 ## VALIDATION AND TESTING
 - To test out the correctness of your work, do the following:
